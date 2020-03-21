@@ -1,0 +1,65 @@
+////
+buildscript {
+	repositories { jcenter() }
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:1.3.1.RELEASE"
+		classpath 'org.springframework:springloaded:1.2.0.RELEASE'
+	}
+}
+/////
+
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'war'
+}
+
+group = 'edu.birzeit'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+	all {
+		exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	compile("org.springframework.boot:spring-boot-starter-actuator")
+	compile('org.springframework.boot:spring-boot-starter-log4j2')
+	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
+}
+
+test {
+	useJUnitPlatform()
+}
+
+////////
+apply plugin: 'idea'
+
+idea {
+	module {
+		inheritOutputDirs = false
+		outputDir = file("$buildDir/classes/main/")
+	}
+}
+////////
