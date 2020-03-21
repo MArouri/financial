@@ -17,6 +17,6 @@ phases:
       - echo ps
 artifacts:
   files:
-    - build/libs/finnacial-0.0.1-SNAPSHOT.war
+    - build/libs/finacial-0.0.1-SNAPSHOT.war
     - appspec.yml
     - scripts/*
