@@ -1,0 +1,6 @@
+edu:
+  birzeit:
+    marketplace:
+        userPoolId: "us-east-1_aTCJbrnyV"
+        region: "us-east-1"
+        pjwkUrl: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_aTCJbrnyV/.well-known/jwks.json"
