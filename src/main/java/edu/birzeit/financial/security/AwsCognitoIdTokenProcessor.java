@@ -44,7 +44,15 @@ public class AwsCognitoIdTokenProcessor {
     }
 
     private String getUserNameFrom(JWTClaimsSet claims) {
-        return claims.getClaims().get(this.jwtConfiguration.getUserNameField()).toString();
+        Object username = claims.getClaims().get(this.jwtConfiguration.getUserNameField());
+        if(username != null){
+            return username.toString();
+        }else{
+            if(claims.getClaims().get("client_id").toString().equals("14sucp1lo5lufrp12ikpolmu04")){
+                return "financial_client";
+            }
+        }
+        return null;
     }
 
     private void verifyIfIdToken(JWTClaimsSet claims) throws Exception {
