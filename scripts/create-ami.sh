@@ -24,6 +24,14 @@ chmod +x ./install
 sudo ./install auto
 rm -rf install
 
+echo "------- Handle OPA ------"
+sudo mkdir /opt/opa
+cd /opt/
+chown -R ec2-user:ec2-user opa
+cd /opt/opa
+curl -L -o opa https://openpolicyagent.org/downloads/latest/opa_linux_amd64
+chmod 755 ./opa
+
 ## Install CloudWatch Agent
 #rpm -Uhv https://s3.amazonaws.com/amazoncloudwatch-agent/amazon_linux/amd64/latest/amazon-cloudwatch-agent.rpm
 #aws s3 cp s3://harri-deployments/resources/cloudwatch-agent/amazon-cloudwatch-agent.json /opt/aws/amazon-cloudwatch-agent/etc/amazon-cloudwatch-agent.json --region=us-east-1
